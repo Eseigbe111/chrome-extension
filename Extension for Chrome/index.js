@@ -37,12 +37,17 @@ function attachDeleteButtonListeners() {
 }
 
 saveEl.addEventListener('click', function() {
-    const textbox = inputEl.value;
-    myLeads.push(textbox);
-    inputEl.value = '';
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    display(myLeads);
+    const textbox = inputEl.value.trim(); // Trimming any whitespace
+    if (textbox) {
+        myLeads.push(textbox);
+        inputEl.value = '';
+        localStorage.setItem("myLeads", JSON.stringify(myLeads));
+        display(myLeads);
+    } else {
+        alert("Please enter a valid input!");
+    }
 });
+
 
 savetabEl.addEventListener('click', function() {
     if (typeof browser !== 'undefined' && typeof browser.tabs !== 'undefined') {
