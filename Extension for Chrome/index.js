@@ -61,7 +61,7 @@ function deleteItem(index) {
 
 
 saveEl.addEventListener('click', function() {
-    const textbox = inputEl.value; // Trimming any whitespace
+    const textbox = inputEl.value; 
     if (textbox) {
         myLeads.push(textbox);
         inputEl.value = '';
