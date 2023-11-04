@@ -13,12 +13,13 @@ if (fromLocalStorage) {
     display(myLeads);
 }
 
-function display(leads) {
+function display(leadsarr) {
     let list = '';
-    leads.forEach((lead, i) => {
+    leadsarr.forEach((lead, i) => {
+        //lead = leadsarr[i]
         list += `<li>
             <a href='${lead}' target='_blank'>${lead}</a>
-            <button id="deleteItem${i}" class="deleteButton">
+            <button id="${i}deleteItem" class="deleteButton">
                 Delete
             </button>
         </li>`;
@@ -26,6 +27,22 @@ function display(leads) {
     ulEl.innerHTML = list;
     attachDeleteButtonListeners();
 }
+
+/* the above function is the same as the one below
+function display(leads) {
+    let list = '';
+    for (let i = 0; i < leads.length; i++) {
+        const lead = leads[i];
+        list += `<li>
+            <a href="${lead}" target="_blank">${lead}</a>
+            <button id="deleteItem${i}" class="deleteButton">Delete</button>
+        </li>`;
+    }
+    ulEl.innerHTML = list;
+    attachDeleteButtonListeners();
+}
+
+*/
 
 function attachDeleteButtonListeners() {
     const deleteButtons = document.querySelectorAll('.deleteButton');
@@ -36,8 +53,15 @@ function attachDeleteButtonListeners() {
     }
 }
 
+function deleteItem(index) {
+    myLeads.splice(index, 1);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    display(myLeads);
+}
+
+
 saveEl.addEventListener('click', function() {
-    const textbox = inputEl.value.trim(); // Trimming any whitespace
+    const textbox = inputEl.value; // Trimming any whitespace
     if (textbox) {
         myLeads.push(textbox);
         inputEl.value = '';
@@ -72,11 +96,7 @@ savetabEl.addEventListener('click', function() {
 });
 
 
-function deleteItem(index) {
-    myLeads.splice(index, 1);
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    display(myLeads);
-}
+
 
 deleteEl.addEventListener('click', function() {
     if (confirm("Are you sure you want to delete all items?")) {
