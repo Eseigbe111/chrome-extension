@@ -13,7 +13,7 @@ if (fromLocalStorage) {
     display(myLeads);
 }
 
-function display(leadsarr) {
+/*function display(leadsarr) {
     let list = '';
     leadsarr.forEach((lead, i) => {
         //lead = leadsarr[i]
@@ -27,25 +27,25 @@ function display(leadsarr) {
     ulEl.innerHTML = list;
     attachDeleteButtonListeners();
 }
+*/
+/* the above function is the same as the one below*/
 
-/* the above function is the same as the one below
 function display(leads) {
     let list = '';
     for (let i = 0; i < leads.length; i++) {
         const lead = leads[i];
         list += `<li>
             <a href="${lead}" target="_blank">${lead}</a>
-            <button id="deleteItem${i}" class="deleteButton">Delete</button>
+            <button class="deleteButton">Delete</button>
         </li>`;
     }
     ulEl.innerHTML = list;
     attachDeleteButtonListeners();
 }
 
-*/
 
 function attachDeleteButtonListeners() {
-    const deleteButtons = document.querySelectorAll('.deleteButton');
+    const deleteButtons = document.getElementsByClassName('deleteButton');
     for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener('click', function() {
             deleteItem(i);
