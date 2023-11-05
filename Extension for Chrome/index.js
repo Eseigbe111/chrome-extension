@@ -36,7 +36,7 @@ function display(leads) {
         const lead = leads[i];
         list += `<li>
             <a href="${lead}" target="_blank">${lead}</a>
-            <button class="deleteButton">Delete</button>
+            <button class="deletebtn">Delete</button>
         </li>`;
     }
     ulEl.innerHTML = list;
@@ -45,9 +45,9 @@ function display(leads) {
 
 
 function attachDeleteButtonListeners() {
-    const deleteButtons = document.getElementsByClassName('deleteButton');
-    for (let i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener('click', function() {
+    const deletebtnEl = document.getElementsByClassName('deletebtn');
+    for (let i = 0; i < deletebtnEl.length; i++) {
+        deletebtnEl[i].addEventListener('click', function() {
             deleteItem(i);
         });
     }
